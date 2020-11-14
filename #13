@@ -15,7 +15,7 @@ namespace Diskr_13
                 Console.Write("{0}) ", k);
                 for (int i = 0; i < k_razm; i++)
                 {
-                    Console.Write("{0}", razm[i]);
+                    Console.Write("{0} ", razm[i]);
                 }
                 k++;
                 Console.WriteLine("");
