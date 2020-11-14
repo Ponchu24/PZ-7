@@ -1,0 +1,54 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+
+namespace Diskr_14_1
+{
+    class Program
+    {
+        static void func(int k_razm, int n, bool[] flag, int[] alph, int[] razm, int el_now, ref int k, StreamWriter wrt)
+        {
+            if (el_now == k_razm)
+            {
+                //Console.Write("{0}) ", k);
+                wrt.Write("{0}) ", k);
+                for (int i = 0; i < k_razm; i++)
+                {
+                    //Console.Write("{0}", razm[i]);
+                    wrt.Write("{0} ", razm[i]);
+                }
+                k++;
+                wrt.WriteLine("");
+            }
+            else
+                for (int i = 0; i < n; i++)
+                {
+                    if (flag[i] == false)
+                    {
+                        razm[el_now] = alph[i];
+                        flag[i] = true;
+                        func(k_razm, n, flag, alph, razm, el_now + 1, ref k, wrt);
+                        flag[i] = false;
+                    }
+                }
+        }
+        static void Main(string[] args)
+        {
+            int k = 1;
+            const int n = 8;
+            int k_razm = 5;
+            int[] alph = new int[n] {1,2,3,4,5,6,7,8 };
+            int[] razm = new int[5];
+            bool[] flag = new bool[n];
+            for (int i = 0; i < n; i++)
+                flag[i] = false;
+            StreamWriter wrt = new StreamWriter("Output.txt");
+            func(k_razm, n, flag, alph, razm, 0, ref k, wrt);
+            wrt.Close();
+            Console.ReadKey();
+        }
+    }
+}
