@@ -47,6 +47,7 @@ namespace Diskr_14_1
                 flag[i] = false;
             StreamWriter wrt = new StreamWriter("Output.txt");
             func(k_razm, n, flag, alph, razm, 0, ref k, wrt);
+            wrt.WriteLine(k-1);
             wrt.Close();
             Console.ReadKey();
         }
