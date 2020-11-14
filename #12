@@ -1,0 +1,58 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Diskr_12
+{
+    class Program
+    {
+        static void func(int k_razm, int n, bool[] flag, int[] alph, int[] razm, int el_now, int xz)
+        {
+            if (el_now == k_razm)
+            {
+                for (int i = 0; i < k_razm; i++)
+                {
+                    Console.Write("{0} ", razm[i]);
+                }
+                Console.WriteLine("");
+            }
+            else
+                for (int i = xz; i < n; i++)
+                {
+                    if (flag[i] == false)
+                    {
+                        //Console.WriteLine("{0}",  el_now);
+                        //Console.WriteLine("alph[{1}]{0}", alph[i], i) ;
+                        razm[el_now] = alph[i];
+                        flag[i] = true;
+                        func(k_razm, n, flag, alph, razm, el_now + 1, i);
+                        flag[i] = false;
+                    }
+                }
+        }
+        static void Main(string[] args)
+        {
+            int n;
+            int k_razm;
+            Console.WriteLine("Элементы алфавита - целочисленные значения.");
+            Console.Write("Введите кол-во элементов алфавита: ");
+            n = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Введите k: ");
+            k_razm = Convert.ToInt32(Console.ReadLine());
+            int[] alph = new int[n];
+            int[] razm = new int[k_razm];
+            for (int i = 0; i < n; i++)
+            {
+                Console.Write("Введите {0} элемент: ", i + 1);
+                alph[i] = Convert.ToInt32(Console.ReadLine());
+            }
+            bool[] flag = new bool[n];
+            for (int i = 0; i < n; i++)
+                flag[i] = false;
+            func(k_razm, n, flag, alph, razm, 0, 0);
+            Console.ReadKey();
+        }
+    }
+}
